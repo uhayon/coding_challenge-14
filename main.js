@@ -14,6 +14,14 @@
       this.elapsedTime.startTimer();
     }
 
+    pauseGame() {
+      this.elapsedTime.stopTimer();
+    }
+
+    resumeGame() {
+      this.elapsedTime.startTimer();
+    }
+
     endGame() {
       this.elapsedTime.stopTimer();
     }
@@ -156,7 +164,7 @@
       this.interval = setInterval(function () {
         this.time++;
         this.refreshLabel();
-      }.bind(this), 1000)
+      }.bind(this), 1000) 
     }
 
     stopTimer() {
@@ -186,6 +194,35 @@
     }
     window.game = new Game(cards.concat(cards));
   }
+
+  showModalContainer = function() {
+    document.getElementsByClassName('modal-container')[0].classList.add('opened');
+  }
+
+  hideModalContainer = function() {
+    setTimeout(function() {
+      document.getElementsByClassName('modal-container')[0].classList.remove('opened');
+      game.resumeGame();
+    }, 500);
+  }
+
+  showRestartModal = function() {
+    game.pauseGame();
+    showModalContainer();
+    document.getElementById('modal-restart').classList.add('opened') 
+  }
+
+  hideRestartModal = function() {
+    document.getElementById('modal-restart').classList.remove('opened');
+    hideModalContainer();
+  }
+
+  hideModals = function() {
+    hideRestartModal();
+  }
+
+  document.getElementById('restart-button').addEventListener('click', showRestartModal);
+  document.getElementsByClassName('modal-container')[0].addEventListener('click', hideModals);
 
   startNewGame();
 })();
