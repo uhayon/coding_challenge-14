@@ -69,6 +69,7 @@ main {
 }
 
 #board div.card {
+  position: relative;
   height: 100px;
   width: 100%;
   border: 1px solid #9b59b6;
@@ -112,7 +113,13 @@ main {
   transition: opacity .5s;
 }
 
+#board div.card.face-up.matched {
+  background-color: #2ecc71;
+  border-color: #2ecc71;
+  cursor: initial;
+}
+
 #board div.card i.fas {
-  position: fixed;
+  position: absolute;
 }
 /*# sourceMappingURL=styles.css.map */

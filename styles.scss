@@ -1,5 +1,6 @@
 $main-purple: #9b59b6;
 $main-gray: #c2c2c2;
+$matched: #2ecc71;
 
 html {
     height: 100vh;
@@ -48,6 +49,7 @@ main {
     }
 
     div.card {
+        position: relative;
         height: 100px;
         width: 100%;
         border: 1px solid $main-purple;
@@ -76,14 +78,14 @@ main {
                 opacity: 0;
                 transition: opacity .5s;
             }
-            // i.fa-certificate {
-            //     transform: translateX(-90deg);
-            //     opacity: 0;
-            //     display: none;
-            // } 
+            &.matched {
+                background-color: $matched;
+                border-color: $matched;
+                cursor: initial;
+            }
         }
         i.fas {
-            position: fixed;
+            position: absolute;
         }
     }
 }
