@@ -1,0 +1,118 @@
+html {
+  height: 100vh;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#1e3c72), color-stop(1%, #1e3c72), to(#2a5298));
+  background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
+}
+
+body {
+  margin: 0;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #9b59b6;
+  color: #fff;
+}
+
+header .game-statistics {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 100%;
+  text-align: center;
+}
+
+main {
+  margin: 8px 25px;
+}
+
+#board {
+  margin-top: 20px;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 25px;
+  justify-items: center;
+  -ms-grid-columns: (1fr)[1];
+      grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 220px) {
+  #board {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 340px) {
+  #board {
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 580px) {
+  #board {
+    -ms-grid-columns: (1fr)[5];
+        grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+#board div.card {
+  height: 100px;
+  width: 100%;
+  border: 1px solid #9b59b6;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 2rem;
+  background-color: #9b59b6;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+#board div.card.face-down i:not(.fa-certificate) {
+  opacity: 0;
+}
+
+#board div.card.face-down:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  border: 2px solid #fff;
+}
+
+#board div.card.face-up {
+  background-color: #c2c2c2;
+  border-color: #c2c2c2;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+#board div.card.face-up i.fa-certificate {
+  opacity: 0;
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+}
+
+#board div.card i.fas {
+  position: fixed;
+}
+/*# sourceMappingURL=styles.css.map */
