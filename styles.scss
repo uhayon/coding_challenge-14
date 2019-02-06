@@ -1,8 +1,10 @@
 $main-purple: #9b59b6;
 $main-gray: #c2c2c2;
 $matched: #2ecc71;
+@import url('https://fonts.googleapis.com/css?family=Krub:400,700');
 
 html {
+    font-family: 'Krub', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     height: 100vh;
     background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
 }
@@ -166,9 +168,15 @@ main {
                 color: #fff;
                 &.accept {
                     background-color: #27ae60;
+                    &:hover {
+                        background-color: #0c6330;
+                    }
                 }
                 &.decline {
                     background-color: #c0392b;
+                    &:hover {
+                        background-color: #72150a;
+                    }
                 }
             }
         }
