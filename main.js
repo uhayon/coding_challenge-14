@@ -7,7 +7,7 @@
       this.moves = new Moves();
       this.elapsedTime = new ElapsedTime();
       this.matches = {
-        objective: cards / 2,
+        objective: cards.length / 2,
         done: 0
       }
 
@@ -27,9 +27,10 @@
     }
 
     addMatch() {
-      this.matchedCards++;
-      if (this.matchedCards === this.matchesToWin) {
+      this.matches.done++;
+      if (this.matches.done === this.matches.objective) {
         this.elapsedTime.stopTimer();
+        showWonModal();
       }
     }
   }
@@ -79,7 +80,7 @@
     }
 
     onClick() {
-      if (this.matched) {
+      if (this.matched || this.htmlElement.classList.contains('face-up')) {
         return;
       }
 
@@ -90,9 +91,11 @@
       } else {
         const firstCard = game.board.pickedCard;
         game.board.pickedCard = null;
+        game.moves.add();
         if (firstCard.content === this.content) {
           firstCard.setMatched();
           this.setMatched();
+          game.addMatch();
         } else {
           setTimeout(function() {
             firstCard.htmlElement.classList.toggle('face-up');
@@ -101,8 +104,6 @@
             this.htmlElement.classList.toggle('face-down');
           }.bind(this), 500);
         }
-
-        game.moves.add();
       }
     }
 
@@ -199,30 +200,53 @@
     document.getElementsByClassName('modal-container')[0].classList.add('opened');
   }
 
-  hideModalContainer = function() {
+  hideModalContainer = function(resumeTimer) {
     setTimeout(function() {
       document.getElementsByClassName('modal-container')[0].classList.remove('opened');
-      game.resumeGame();
+      if (resumeTimer) {
+        game.resumeGame();
+      }
     }, 500);
   }
 
   showRestartModal = function() {
-    game.pauseGame();
-    showModalContainer();
-    document.getElementById('modal-restart').classList.add('opened') 
+    showModal("Are you sure you want to restart the game?");
   }
 
-  hideRestartModal = function() {
-    document.getElementById('modal-restart').classList.remove('opened');
-    hideModalContainer();
+  showWonModal = function() {
+    showModal("Congratulations! \n You've won in " + game.moves.count + " moves, you've needed " + game.elapsedTime.time.toString().toHHMMSS() + ". \n Wanna play again?");
+  }
+
+  showModal = function(message) {
+    game.pauseGame();
+    showModalContainer();
+    document.getElementById('modal-message').innerText = message;
+    document.getElementById('modal').classList.add('opened') 
+  }
+
+  hideRestartModal = function(resumeTimer) {
+    document.getElementById('modal').classList.remove('opened');
+    hideModalContainer(resumeTimer);
   }
 
   hideModals = function() {
-    hideRestartModal();
+    hideRestartModal(true);
+  }
+
+  restartGame = function() {
+    startNewGame();
+    hideRestartModal(false);
   }
 
   document.getElementById('restart-button').addEventListener('click', showRestartModal);
   document.getElementsByClassName('modal-container')[0].addEventListener('click', hideModals);
+
+  const modals = document.getElementsByClassName('modal');
+  for (let i = 0; i < modals.length; i++) {
+    modals[i].addEventListener('click' , function(e) {
+      e.stopPropagation();
+    })
+  }
 
   startNewGame();
 })();

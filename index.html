@@ -30,8 +30,20 @@
         <div id="board"></div>
     </main>
     <div class="modal-container">
-        <div id="modal-restart" class="modal">
-            Are you sure you want to restart the game?
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <h2 id="modal-message"></h2>
+                <div class="buttons-container">
+                    <button class="accept" onclick="restartGame()">
+                            <i class="fas fa-check"></i>
+                            Accept
+                    </button>
+                    <button class="decline" onclick="hideRestartModal()" >
+                            <i class="fas fa-times"></i>
+                            Cancel
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
     <script src="main.js"></script>

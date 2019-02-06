@@ -13,6 +13,10 @@ body {
     width: 100%;
 }
 
+button {
+    cursor: pointer;
+}
+
 header {
     display: flex;
     flex-direction: column;
@@ -89,6 +93,7 @@ main {
             }
         }
         &.face-up {
+            cursor: initial;
             background-color: $main-gray;
             border-color: $main-gray;
             transform: rotateY(180deg);
@@ -132,11 +137,39 @@ main {
     transform: scale(1.3);
     top: 20%;
     width: 80vw;
-    height: 50vh;
-    background-color: #c2c2c2;
+    height: 30vh;
+    background-color: #1e3c72;
+    display: flex;
+    justify-content: center;
+    z-index: 2000;
     &.opened { 
-        display: block;
         opacity: 1;
         transform: scale(1);
+    }
+    .modal-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        h2 {
+            text-align: center;
+            color: #fff;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: space-around;
+
+            button {
+                padding: 20px;
+                border-radius: 5px;
+                color: #fff;
+                &.accept {
+                    background-color: #27ae60;
+                }
+                &.decline {
+                    background-color: #c0392b;
+                }
+            }
+        }
     }
 }   
