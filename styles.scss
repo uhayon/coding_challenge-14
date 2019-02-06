@@ -93,6 +93,7 @@ main {
             }
         }
         &.face-up {
+            box-shadow: -5px 5px 2px;
             cursor: initial;
             background-color: $main-gray;
             border-color: $main-gray;
