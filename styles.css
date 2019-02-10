@@ -119,10 +119,6 @@ main {
   cursor: pointer;
 }
 
-#board div.card.face-down i:not(.fa-certificate) {
-  opacity: 0;
-}
-
 #board div.card.face-down:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
@@ -139,20 +135,15 @@ main {
           transform: rotateY(180deg);
 }
 
-#board div.card.face-up i.fa-certificate {
-  opacity: 0;
-  -webkit-transition: opacity .5s;
-  transition: opacity .5s;
+#board div.card.face-up:before {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
 }
 
 #board div.card.face-up.matched {
   background-color: #2ecc71;
   border-color: #2ecc71;
   cursor: initial;
-}
-
-#board div.card i.fas {
-  position: absolute;
 }
 
 .modal-container {

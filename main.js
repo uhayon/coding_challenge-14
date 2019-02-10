@@ -86,6 +86,9 @@
 
       this.htmlElement.classList.toggle('face-up');
       this.htmlElement.classList.toggle('face-down');
+      this.htmlElement.classList.toggle('fa-certificate');
+      this.htmlElement.classList.toggle('fa-' + this.content);
+       
       if (game.board.pickedCard === null) {
         game.board.pickedCard = this;
       } else {
@@ -98,13 +101,18 @@
           game.addMatch();
         } else {
           setTimeout(function() {
-            firstCard.htmlElement.classList.toggle('face-up');
-            firstCard.htmlElement.classList.toggle('face-down');
-            this.htmlElement.classList.toggle('face-up');
-            this.htmlElement.classList.toggle('face-down');
+            firstCard.toggleCard();
+            this.toggleCard();
           }.bind(this), 500);
         }
       }
+    }
+
+    toggleCard() {
+      this.htmlElement.classList.toggle('face-up');
+      this.htmlElement.classList.toggle('face-down');
+      this.htmlElement.classList.toggle('fa-certificate');
+      this.htmlElement.classList.toggle('fa-' + this.content);
     }
 
     setMatched() {
@@ -113,24 +121,12 @@
     }
 
     buildHtmlCard() {
-      const cardContainer = document.createElement('div');
-      cardContainer.classList.add('card');
-      cardContainer.classList.add('face-down');
+      const card = document.createElement('div');
+      card.classList.add('fas', 'fa-certificate', 'card', 'face-down');
 
-      const cardFrontFace = document.createElement('i');
-      cardFrontFace.classList.add('fas')
-      cardFrontFace.classList.add('fa-' + this.content);
+      card.addEventListener('click', this.onClick.bind(this));
 
-      const cardBackFace = document.createElement('i');
-      cardBackFace.classList.add('fas')
-      cardBackFace.classList.add('fa-certificate');
-
-      cardContainer.appendChild(cardFrontFace);
-      cardContainer.appendChild(cardBackFace);
-
-      cardContainer.addEventListener('click', this.onClick.bind(this));
-
-      return cardContainer;
+      return card;
     }
   }
 

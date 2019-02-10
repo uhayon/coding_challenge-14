@@ -86,9 +86,6 @@ main {
         transition: all 0.3s ease;
         cursor: pointer;
         &.face-down {
-            i:not(.fa-certificate) {
-                opacity: 0;
-            }
             &:hover {
                 transform: scale(1.1);
                 border: 2px solid #fff;
@@ -100,18 +97,14 @@ main {
             background-color: $main-gray;
             border-color: $main-gray;
             transform: rotateY(180deg);
-            i.fa-certificate {
-                opacity: 0;
-                transition: opacity .5s;
+            &:before {
+                transform: rotateY(180deg)
             }
             &.matched {
                 background-color: $matched;
                 border-color: $matched;
                 cursor: initial;
             }
-        }
-        i.fas {
-            position: absolute;
         }
     }
 }
